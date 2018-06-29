@@ -37,9 +37,9 @@ dependencies {
     implementation 'com.android.support.constraint:constraint-layout:1+'
     implementation 'com.android.support:support-v4:26+'
     implementation 'com.android.support:design:26+'
-    testImplementation 'junit:junit:4.12'
+//    testImplementation 'junit:junit:4.12'
     //    implementation 'com.google.android.gms:play-services-maps:15.0.1'
-    implementation 'com.github.hotchemi:permissionsdispatcher:2.2.0'
-    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.2.0'
+//    implementation 'com.github.hotchemi:permissionsdispatcher:2.2.0'
+//    annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:2.2.0'
     implementation files('lib/BaiduLBS_Android.jar')
 }

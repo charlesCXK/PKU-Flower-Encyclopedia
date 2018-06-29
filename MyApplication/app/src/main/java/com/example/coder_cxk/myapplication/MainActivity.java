@@ -10,9 +10,6 @@ import android.widget.Button;
 
 import com.baidu.mapapi.SDKInitializer;
 
-import permissions.dispatcher.RuntimePermissions;
-
-
 
 public class MainActivity extends Activity {
 
