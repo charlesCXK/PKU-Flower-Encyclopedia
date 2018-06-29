@@ -1,0 +1,467 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".baike"
+    tools:showIn="@layout/app_bar_baike">
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        tools:layout_editor_absoluteX="67dp"
+        tools:layout_editor_absoluteY="0dp"
+        android:background="#F5F5F5">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- 第一项-->
+            <!--设置这个layout的margin距离，看起来更美观-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow1" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext1"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="13dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="13dp"
+                        android:text="荷花\n属种：睡莲目\n又名莲花、水芙蓉"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第2项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow2" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="13dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="13dp"
+                        android:text="杜鹃花\n属种：杜鹃花科\n又名映山红、山石榴"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第3项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow3" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext3"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="13dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="13dp"
+                        android:text="风信子\n属种：风信子科风信属\n原产地中海沿岸及小亚细亚一带"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第4项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow4" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext4"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="14dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:text="曼陀罗\n属种：茄科\n又叫曼荼罗、满达，原产印度"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第5项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow5" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext5"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="14dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:text="大卫·奥斯丁玫瑰\n属种：玫瑰\n英国古典型玫瑰，花色是粉色，外层花瓣为白色"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第6项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow6" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext6"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="14dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:text="蝴蝶兰花\n属种：多年生草本\n别名兰花草、日本鸢尾、开喉箭，又叫琼花。"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第7项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow7" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext7"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="14dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:text="梅花\n属种：蔷薇科梅亚属\n寒冬先叶开放，花瓣五片，有白﹑红、粉红等多种颜色。"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+<!--*********************************************************-->
+            <!--第8项-->
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="40dp"
+                android:layout_marginRight="40dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/baike_flower_frame"
+                android:orientation="vertical">
+                <!--花的图片-->
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    android:paddingTop="20dp"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    >
+
+                    <ImageView
+                        android:id="@+id/image8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center_horizontal"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/flow8" />
+                </LinearLayout>
+                <!--花的介绍-->
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="center_horizontal"
+                    android:orientation="vertical"
+                    tools:layout_editor_absoluteX="65dp"
+                    tools:layout_editor_absoluteY="422dp">
+
+                    <TextView
+                        android:id="@+id/baiketext8"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:gravity="center"
+                        android:paddingBottom="14dp"
+
+                        android:paddingLeft="20dp"
+                        android:paddingTop="14dp"
+                        android:text="初恋\n属种：景天科拟石莲花属\n宛若陷入初恋的少男少女。"
+
+                        android:textAppearance="@style/TextAppearance.AppCompat.Light.Widget.PopupMenu.Small" />
+
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>
