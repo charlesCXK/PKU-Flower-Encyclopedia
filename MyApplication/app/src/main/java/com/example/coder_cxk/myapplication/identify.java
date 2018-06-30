@@ -8,8 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.media.ThumbnailUtils;
 import android.net.Uri;
@@ -49,6 +52,7 @@ import android.Manifest.permission.*;
 import com.baidu.mapapi.SDKInitializer;
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.MapView;
+import com.baidu.mapapi.map.MarkerOptions;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -65,15 +69,19 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MapStatus;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.map.MyLocationConfiguration;
+import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 
+import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -91,6 +99,7 @@ public class identify extends AppCompatActivity
     String file, now_time;
     String raw_file, small_file;        // 一个是原图，一个是缩小后的缩率图
     String logfile;     // log 文件的文件名
+    String site_log_file;
     String strPath;
     /*******end*******/
 
@@ -108,11 +117,15 @@ public class identify extends AppCompatActivity
 
     private MyLocationConfiguration config;
 
+
+    private double mCurrentLantitude;
+    private double mCurrentLongitude;
+    //返回目前的经纬点;
+
     /*右上角历史记录*/
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Log.e("ZHANGBIN","create option menu");
         // Handle item selection
         switch (item.getItemId()) {
             case R.id.action_history:
@@ -126,6 +139,35 @@ public class identify extends AppCompatActivity
         }
     }
 
+    public void DrawPoint(double lantitude,double longigute,String filepath) {
+        LatLng pt = new LatLng(lantitude, longigute);
+        Bitmap bitmap = zoomImg(BitmapFactory.decodeFile(filepath),120,120);
+        BitmapDescriptor descriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
+        OverlayOptions option = new MarkerOptions().position(pt).icon(descriptor);
+
+        mBaiduMap.addOverlay(option);
+    }
+
+    public void DrawPoint(double lantitude,double longigute,Bitmap bmp) {
+        LatLng pt = new LatLng(lantitude, longigute);
+        Bitmap bitmap = zoomImg(bmp,120,120);
+        BitmapDescriptor descriptor = BitmapDescriptorFactory.fromBitmap(bitmap);
+        OverlayOptions option = new MarkerOptions().position(pt).icon(descriptor);
+
+        mBaiduMap.addOverlay(option);
+    }
+
+    public  static Bitmap zoomImg(Bitmap bm, int newWidth, int newHeigth){
+        int width = bm.getWidth();
+        int height = bm.getHeight();
+
+        float scaleWidth = (float)newWidth/width;
+        float scaleHeight = ((float)newHeigth)/height;
+
+        Matrix matrix = new Matrix();
+        matrix.postScale(scaleWidth, scaleHeight);
+        return Bitmap.createBitmap(bm,0,0,width,height,matrix,true);
+    }
     /*手动获取权限*/
 
     public void showContacts(){
@@ -262,11 +304,14 @@ public class identify extends AppCompatActivity
                     LatLng xy = new LatLng(location.getLatitude(),
                             location.getLongitude());
                     int loc_type = location.getLocType();
+                    mCurrentLantitude=xy.latitude;
+                    mCurrentLongitude=xy.longitude;
                     MapStatusUpdate status = MapStatusUpdateFactory.newLatLng(xy);
                     mBaiduMap.animateMapStatus(status);
                 }
             }
         });
+
 
         // 获得系统时间戳
         long timeStamp = System.currentTimeMillis();
@@ -282,8 +327,25 @@ public class identify extends AppCompatActivity
         raw_file = strPath + File.separator + now_time;
         small_file = raw_file + "_small";
         logfile = strPath + File.separator + "log.txt";
+        site_log_file = strPath + File.separator + "site_log.txt";
         file = raw_file + ".png";
         fileUri = Uri.fromFile(new File(file));//Uri.fromFile(new File(Environment.getExternalStorageDirectory(), "temp.jpg")); //图片存放路径
+
+        draw_init();
+
+        try {
+            FileInputStream inputStream = new FileInputStream(site_log_file);
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+            String str = null;
+            while ((str = bufferedReader.readLine()) != null) {
+                String[] strs = str.split("\\$");
+                DrawPoint(Double.valueOf(strs[1]),Double.valueOf(strs[2]),strs[0]);
+            }
+            //close
+            inputStream.close();
+            bufferedReader.close();
+        } catch(IOException e){}
 
         /*加了这个，intent.putExtra就不报错*/
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
@@ -302,6 +364,7 @@ public class identify extends AppCompatActivity
                 menuWindow.showAtLocation(v, Gravity.BOTTOM|Gravity.CENTER_HORIZONTAL, 0, 0);
             }
         });
+
     }
 
 
@@ -551,7 +614,8 @@ public class identify extends AppCompatActivity
             Bitmap bm = BitmapFactory.decodeFile(fileUri.getPath(), opts);
 
             Bitmap small_one = getImageThumbnail(fileUri.getPath(), 200, 200);
-            String small_savepath = saveBitmap(small_one, raw_file+"_small");       // 存储小的那个
+            String small_savepath = saveBitmap(small_one, raw_file + "_small");       // 存储小的那个
+
 
             String img_path = raw_file + ".png";
 
@@ -566,7 +630,10 @@ public class identify extends AppCompatActivity
             if (result.startsWith("~"))
                 intentString("(Not flower) " + result.substring(2));
             else
+            {
+                write_site_log(site_log_file, small_savepath, mCurrentLantitude, mCurrentLongitude);
                 intentString(result);
+            }
 
             Intent intent=new Intent(identify.this,show_photo.class);
             startActivity(intent);
@@ -677,6 +744,40 @@ public class identify extends AppCompatActivity
         editor.putString("cameraImage", imageBase64);
         editor.commit();
     }
+
+    void draw_init(){
+        Resources r = getResources();
+        InputStream is = r.openRawResource(R.raw.flow1);
+        BitmapDrawable bmpDraw = new BitmapDrawable(is);
+        Bitmap bmp = bmpDraw.getBitmap();
+        DrawPoint(39.972569,116.305728,bmp);
+        r = getResources();
+        is = r.openRawResource(R.raw.flow2);
+        bmpDraw = new BitmapDrawable(is);
+        bmp = bmpDraw.getBitmap();
+        DrawPoint(39.993469,116.335728,bmp);
+        r = getResources();
+        is = r.openRawResource(R.raw.flow5);
+        bmpDraw = new BitmapDrawable(is);
+        bmp = bmpDraw.getBitmap();
+        DrawPoint(39.973569,116.315328,bmp);
+        r = getResources();
+        is = r.openRawResource(R.raw.flow6);
+        bmpDraw = new BitmapDrawable(is);
+        bmp = bmpDraw.getBitmap();
+        DrawPoint(39.994569,116.315738,bmp);
+        r = getResources();
+        is = r.openRawResource(R.raw.flow7);
+        bmpDraw = new BitmapDrawable(is);
+        bmp = bmpDraw.getBitmap();
+        DrawPoint(39.993969,116.312728,bmp);
+        r = getResources();
+        is = r.openRawResource(R.raw.flow8);
+        bmpDraw = new BitmapDrawable(is);
+        bmp = bmpDraw.getBitmap();
+        DrawPoint(39.993269,116.315128,bmp);
+    }
+
     // 将字符串放到共享区域
     public void intentString(String str) {
         //把字符串存到SharedPreferences里面
@@ -693,6 +794,16 @@ public class identify extends AppCompatActivity
             writer.write(content);
             writer.close();
         }catch(IOException e){}
+    }
+
+    public void write_site_log(String desname, String filename, double lantitude, double longitude){
+        try {
+            FileWriter writer = new FileWriter(desname, true);     // 以追加方式写文件
+            String content = filename+"$"+lantitude+"$"+longitude+"\n";
+            writer.write(content);
+            writer.close();
+        }catch(IOException e){}
+
     }
 }
 // 00:37
