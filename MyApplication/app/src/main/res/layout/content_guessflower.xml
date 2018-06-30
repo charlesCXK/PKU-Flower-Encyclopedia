@@ -24,7 +24,7 @@
             android:layout_marginLeft="40dp"
             android:layout_marginRight="40dp"
             android:layout_marginTop="40dp"
-            android:background="@drawable/baike_flower_frame"
+            android:background="@drawable/guess_flower_frame"
             android:orientation="vertical">
 
             <ImageView
@@ -84,7 +84,7 @@
 
                 android:layout_marginLeft="80dp"
                 android:layout_marginRight="80dp"
-                android:text="待评判......"
+                android:text="您的结果："
                 android:textSize="20dp" />
 
         </LinearLayout>
