@@ -148,8 +148,17 @@ public class history extends AppCompatActivity {
         }catch(IOException e){}
         // 修改log信息
         ArrayList<String> log_info = read_log(logfile);
-        modify_block(log_info);
         // 重新载入log
         setContentView(R.layout.activity_history);
+        modify_block(log_info);
+        // 根据记录个数动态显示layout block
+        Resources res = getResources();
+        for (int i=0;i<18;i++){
+            int layoutid = res.getIdentifier("history_l"+i,"id",getPackageName());
+            LinearLayout ll = (LinearLayout) findViewById(layoutid);
+            ll.setVisibility(View.GONE);
+        }
+
+
     }
 }
