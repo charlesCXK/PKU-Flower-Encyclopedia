@@ -6,6 +6,7 @@ import time
 import sys
 import os
 import struct
+import Image
 import flower_classification as fc
 
 
@@ -56,13 +57,19 @@ def deal_data(conn, addr, alex_model, alex_transformer, res_model, res_transform
                 print '    file format: ' + file_format
             else:
                 print '    unknown format'
+                conn.close()
+                break
+
+            if len(strlist[3]) > 1:
+                print '    receive error'
+                conn.close()
                 break
 
             if not os.path.exists(TEMP_DIR):
                 os.makedirs(TEMP_DIR)
             files = os.listdir(TEMP_DIR)
             if len(files) >= MAX_TEMP_SIZE:
-                while len(files >= MAX_TEMP_SIZE):
+                for i in range(MAX_TEMP_SIZE/2):
                     os.remove(TEMP_DIR + files[0])
                     files.pop(0)
 
@@ -72,7 +79,7 @@ def deal_data(conn, addr, alex_model, alex_transformer, res_model, res_transform
             new_filepath = TEMP_DIR + new_filename
 
             recvd_size = 0  # 定义已接收文件的大小
-            fp = open(TEMP_DIR + new_filename, 'wb')
+            fp = open(new_filepath, 'wb')
 
             # conn.send(SERVER_RDY)
             print '    start receiving...'
@@ -90,6 +97,21 @@ def deal_data(conn, addr, alex_model, alex_transformer, res_model, res_transform
             print "    received: " + str(recvd_size)
             print '    end receive...'
             print '    save to ' + new_filepath
+
+            if not file_format == 'jpg' and not file_format == 'png':
+                print '    unknown format'
+                conn.send('FCRES|-2|')
+                conn.close()
+                break
+
+
+            while file_size > 500 * 1000:
+                print'    compressing image'
+                sImg=Image.open(new_filepath)
+                w,h=sImg.size
+                dImg=sImg.resize((w/2,h/2),Image.ANTIALIAS)
+                dImg.save(new_filepath)
+                file_size = os.path.getsize(new_filepath)
 
             result, prob = fc.classify_image(
                 new_filepath, alex_model, alex_transformer, res_model, res_transformer)

@@ -73,6 +73,7 @@ def classify_image(image_name, alex_net, alex_transformer, res_net, res_transfor
     alex_result = int(alex_results.argmax())
     alex_prob = float(alex_results.max())
 
+
     if alex_prob >= REPREDICT_THRESHOLD:
         result = alex_result
         prob = alex_prob
